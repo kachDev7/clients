@@ -15,10 +15,10 @@ export default function Home() {
 
     const router = useRouter();
 
-    const populateUser = async () => {
-        const res = await fetch('http://localhost:8080/api/quote', {
+    const populateUser = async (token) => {
+        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/quote', {
             headers : {
-                'x-access-token' : localStorage.getItem('token')
+                'x-access-token' : token
             }
         })
         const data = await res.json();
@@ -74,7 +74,7 @@ export default function Home() {
                 router.push('/')
 
             }else{
-                populateUser();
+                populateUser(token);
             }
         }else{
             router.push('/login')
@@ -130,9 +130,9 @@ export default function Home() {
     // Action Div
     const Action = () => {
         return(
-            <div className="container my-3 bg-body p-5 br-10 ta">
+            <div className="container my-3 bg-body p-5 br-10">
                 <div className="actionHolder container text-center">
-                    <div className="card myBox br-10 container py-3 my-5" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
+                    <div className="br-10 myBox br-10 container py-3 my-5" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
                         <i className="bi bi-arrow-up-circle h1 text-primary"></i>
                         <h3>Transfer Funds</h3>
                         <p className="lead">Make a transfer to a local bank</p>
