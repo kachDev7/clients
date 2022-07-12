@@ -79,7 +79,7 @@ export default function Home() {
         }else{
             router.push('/login')
         }
-    }, [])
+    }, [router, populateUser])
 
     // Components
     
@@ -91,7 +91,7 @@ export default function Home() {
                     {/* Profile Image */}
                     <div className="d-flex jac r-boda">
                         <div className="circle boda-s d-flex jac detailsImageBox">
-                            <Image src="/propic.png" height={150} width={150} className="circle boda-s" />
+                            <Image src="/propic.png" alt="Image" height={150} width={150} className="circle boda-s" />
                         </div>
                     </div>
                     <div className="container px-3 detailsTextBox">
@@ -111,25 +111,16 @@ export default function Home() {
             <div id="carouselExampleInterval" className="carousel slide my-5" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active" data-bs-interval="2000">
-                    <img src="/blog-1.png" className="d-block w-100" alt="..." height={200} width={300} />
+                    <Image src="/blog-1.png" className="d-block w-100" alt="Image" height={200} width={300} />
                     </div>
 
                     <div className="carousel-item" data-bs-interval="2000">
-                    <img src="/blog-2.png" className="d-block w-100" alt="..." height={200} width={300} />
+                    <Image src="/blog-2.png" className="d-block w-100" alt="Image" height={200} width={300} />
                     </div>
 
                     <div className="carousel-item" data-bs-interval="2000">
-                    <img src="/blog-3.png" className="d-block w-100" alt="..." height={200} width={300} />
+                    <Image src="/blog-3.png" className="d-block w-100" alt="Image" height={200} width={300} />
                     </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
                 </div>
             </div>
         )
