@@ -86,18 +86,18 @@ export default function Home() {
     // Account Details
     const Details = () => {
         return(
-            <div className="container px-5 myBox br-20 bg-body mb-3 boda2">
-                <div className="box-holder d-flex jac boda3">
+            <div className="px-2 myBox br-20 bg-body">
+                <div className="box-holder d-flex jaa">
                     {/* Profile Image */}
-                    <div className="d-flex jac r-boda boda5">
+                    <div className="d-flex jac r-boda my-5">
                         <div className="circle boda-s d-flex jac detailsImageBox">
-                            <Image src="/propic.png" alt="Image" height={150} width={150} className="circle boda-s" />
+                            <Image src="/logo1.jpg" alt="Image" height={150} width={150} className="circle boda-s" />
                         </div>
                     </div>
-                    <div className="detailsTextBox px-3 text-center boda4">
-                        <p className="fw-bold text-secondary mt-3">Account Name</p>
-                        <h4 className="mb-1">{userData.name}</h4>
-                        <p className="fw-bold text-secondary mt-3">Account Balance</p>
+                    <div className="detailsTextBox text-center">
+                        <p className="fw-bold text-secondary">Account Name</p>
+                        <h4 className="">{userData.name}</h4>
+                        <p className="fw-bold text-secondary">Account Balance</p>
                         <h4 className="text-success fw-bold fs">${balance}</h4>
                     </div>
                 </div>

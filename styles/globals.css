@@ -142,8 +142,9 @@ a {
 }
 
 .detailsTextBox{
-  line-height: 8px;
+  line-height: 6px;
+  margin-left: 10px;
 }
 .detailsImageBox{
-  margin-right: 20px;
+  margin-right: 10px;
 }
