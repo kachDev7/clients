@@ -42,9 +42,9 @@ export default function Home() {
         <h1>Standard Trust Group</h1>
         <form className="container myForm py-3" onSubmit={hanldeSubmit}>
           <h3>Register</h3>
-          <label htmlFor="" className='form-label'>Name</label>
+          <label htmlFor="Name" className='form-label'>Name</label>
           <input type="text" name="name" onChange={(e) => { setName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-          <label htmlFor="" className='form-label'>Email</label>
+          <label htmlFor="password" className='form-label'>Email</label>
           <input type="email" name="email" onChange={(e) => { setEmail(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
           <label htmlFor="" className='form-label'>Password</label>
           <input type="password" name="password" onChange={(e) => { setPassword(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
