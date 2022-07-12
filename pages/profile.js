@@ -79,7 +79,7 @@ export default function Home() {
         }else{
             router.push('/login')
         }
-    }, [router, populateUser])
+    }, [router])
 
     // Components
     
@@ -133,13 +133,13 @@ export default function Home() {
             <div className="container my-3 bg-body p-5 br-10 ta">
                 <div className="actionHolder container text-center">
                     <div className="card myBox br-10 container py-3 my-5" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
-                        <i class="bi bi-arrow-up-circle h1 text-primary"></i>
+                        <i className="bi bi-arrow-up-circle h1 text-primary"></i>
                         <h3>Transfer Funds</h3>
                         <p className="lead">Make a transfer to a local bank</p>
                     </div>
                     <Link href='/dashboard'>
                         <div className="myBox br-10 container py-3 my-5">
-                            <i class="bi bi-journal-text h1 text-primary"></i>
+                            <i className="bi bi-journal-text h1 text-primary"></i>
                             <h3>Bank Statement</h3>
                             <p className="lead">Get your most recent transaction logs</p>
                         </div>
