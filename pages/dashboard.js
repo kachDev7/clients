@@ -13,7 +13,7 @@ const Profile = () => {
     const router = useRouter();
 
     const populateUser = async () => {
-        console.log(localStorage.getItem('token'))
+        //console.log(localStorage.getItem('token'))
         const res = await fetch('http://localhost:8080/api/quote', {
             headers : {
                 'x-access-token' : localStorage.getItem('token')
