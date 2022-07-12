@@ -45,7 +45,7 @@ const Profile = () => {
         }else{
             router.push('/login')
         }
-    }, [populateUser(), router])
+    }, [router])
 
     const Transfer = () => {
         return(
