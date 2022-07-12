@@ -12,11 +12,11 @@ const Profile = () => {
 
     const router = useRouter();
 
-    const populateUser = async () => {
+    const populateUser = async (token) => {
         //console.log(localStorage.getItem('token'))
         const res = await fetch('http://localhost:8080/api/quote', {
             headers : {
-                'x-access-token' : localStorage.getItem('token')
+                'x-access-token' : token
             }
         })
         const data = await res.json();
@@ -40,7 +40,7 @@ const Profile = () => {
                 router.push('/')
 
             }else{
-                populateUser();
+                populateUser(token);
             }
         }else{
             router.push('/login')
