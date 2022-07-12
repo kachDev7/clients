@@ -9,7 +9,7 @@ const Profile = () => {
     const [balance, setBalance] = useState(0)
     const [sentAmount, setSentAmount] = useState([])
 
-
+    useEffect(() => {
     const router = useRouter();
 
     const populateUser = async () => {
@@ -30,7 +30,7 @@ const Profile = () => {
         console.log(sentAmount)
     }
 
-    useEffect(() => {
+    
         const token = localStorage.getItem('token');
         if(token){
             const user = jwt.decode(token)
