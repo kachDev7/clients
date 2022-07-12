@@ -1,32 +1,34 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { useRouter } from "next/router";
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const router = useRouter();
-  const [name, setName] = useState("")
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   // handle submit
-  const hanldeSubmit = async (event) => {
+  const hanldeLogin = async (event) => {
     event.preventDefault()
 
-    await fetch('http://localhost:8080/api/register', {
+    await fetch('http://localhost:8080/api/login', {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        "name" : name,
-        "email" : email,
-        "password" : password
+        email,
+        password
       })
     }).then(async res => {
       const data = await res.json();
       console.log(data)
-      if(res.ok){
-        router.push('/login');
+
+      if(data.user){
+        localStorage.setItem('token', data.token)
+        alert("Login Successfully!")
+        router.push("/profile")
       }
     })
   }
@@ -40,10 +42,8 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Standard Trust Group</h1>
-        <form className="container myForm py-3" onSubmit={hanldeSubmit}>
-          <h3>Register</h3>
-          <label htmlFor="" className='form-label'>Name</label>
-          <input type="text" name="name" onChange={(e) => { setName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
+        <form className="container" onSubmit={hanldeLogin}>
+          <h3>Login</h3>
           <label htmlFor="" className='form-label'>Email</label>
           <input type="email" name="email" onChange={(e) => { setEmail(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
           <label htmlFor="" className='form-label'>Password</label>

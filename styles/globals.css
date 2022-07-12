@@ -7,10 +7,143 @@ body {
 }
 
 a {
-  color: inherit;
+  color: unset;
   text-decoration: none;
 }
 
+
+
 * {
   box-sizing: border-box;
+}
+/* Variables */
+:root{
+  --bag : rgb(228, 241, 254);
+}
+
+
+/* Tools */
+.boda1{
+  border: 2px solid black;
+}
+.boda2{
+  border: 2px solid rgb(236, 13, 13);
+}
+.boda3{
+  border: 2px solid rgb(57, 199, 76);
+}
+.boda4{
+  border: 2px solid rgb(236, 240, 18);
+}
+.boda5{
+  border: 2px solid rgb(86, 16, 214);
+}
+.boda6{
+  border: 2px solid rgb(247, 17, 216);
+}
+.boda7{
+  border: 2px solid rgb(9, 240, 240);
+}
+
+
+/* Spinner */
+.loader {
+  border: 10px solid rgb(252, 183, 211); /* Light grey */
+  border-top: 10px solid black; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin-box{
+  background-color: #fff;
+}
+
+
+
+/* UNIVERSALS */
+.rel{
+  position: relative;
+}
+.abs{
+  position: absolute;
+}
+.jab{
+  justify-content: space-between;
+  align-items: center;
+}
+.jac{
+  justify-content: center;
+  align-items: center;
+}
+.jaa{
+  justify-content: space-around;
+  align-items: center;
+}
+.jae{
+  justify-content: space-evenly;
+  align-items: center;
+}
+.column{
+  flex-direction: column;
+}
+
+.br-10{
+      border-radius: 10px;
+}
+.br-20{
+      border-radius: 20px;
+}
+.myNavv{
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.myBox{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  border-left: 5px solid #0d6efd;
+}
+.ta{
+  border-left: 5px solid #0d6efd;
+}
+
+.circle{
+  border-radius: 50%;
+}
+
+.myForm{
+  border-radius: 5px;
+  border-left: 5px solid #0d6efd;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  
+}
+
+
+/* Profile */
+
+.fs{
+  font-size: 2.5rem;
+}
+.boda-s{
+  border: 4px solid white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.r-boda{
+  border-right: 2px solid var(--bag);
+}
+.owner{
+  background-color: var(--bag);
+}
+
+.detailsTextBox{
+  line-height: 8px;
+}
+.detailsImageBox{
+  margin-right: 20px;
 }
