@@ -96,8 +96,8 @@ export default function Home() {
                     </div>
                     <div className="container px-3 detailsTextBox">
                         <p className="fw-bold text-secondary mt-3">Account Name</p>
-                        <h4 className="mb31">{userData.name}</h4>
-                        <p className="fw-bold text-secondary">Account Balance</p>
+                        <h4 className="mb-1">{userData.name}</h4>
+                        <p className="fw-bold text-secondary mt-3">Account Balance</p>
                         <h4 className="text-success fw-bold fs">${balance}</h4>
                     </div>
                 </div>
