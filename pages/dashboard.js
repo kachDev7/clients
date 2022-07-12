@@ -14,7 +14,7 @@ const Profile = () => {
 
     const populateUser = async (token) => {
         //console.log(localStorage.getItem('token'))
-        const res = await fetch('http://localhost:8080/api/quote', {
+        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/quote', {
             headers : {
                 'x-access-token' : token
             }

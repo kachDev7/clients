@@ -14,7 +14,7 @@ export default function Home() {
   const hanldeLogin = async (event) => {
     event.preventDefault()
 
-    await fetch('http://localhost:8080/api/login', {
+    await fetch('https://secure-oasis-37765.herokuapp.com/api/login', {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

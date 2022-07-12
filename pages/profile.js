@@ -40,7 +40,7 @@ export default function Home() {
             if(Number(token) === Number(userData.token)){
                 // make transfer
     
-                const res = await fetch('http://localhost:8080/api/transfer', {
+                const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/transfer', {
                     method: 'POST',
                     headers: {'Content-Type' : 'application/json'},
                     body: JSON.stringify({
