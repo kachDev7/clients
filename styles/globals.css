@@ -148,3 +148,10 @@ a {
 .detailsImageBox{
   margin-right: 10px;
 }
+.myBg{
+  background-image: url('../public/bg1.jpg');
+}
+.myBtn{
+  display: block;
+  width: 100%;
+}

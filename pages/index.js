@@ -31,7 +31,7 @@ export default function Home() {
     })
   }
   return (
-    <div className={styles.container}>
+    <div className="myBg">
       <Head>
         <title>New Standard App</title>
         <meta name="Standard trust group" content="Your favorite banking site" />
@@ -40,7 +40,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Standard Trust Group</h1>
-        <form className="container myForm py-3" onSubmit={hanldeSubmit}>
+        <form className="container myForm py-3 bg-body" onSubmit={hanldeSubmit}>
           <h3>Register</h3>
           <label htmlFor="Name" className='form-label'>Name</label>
           <input type="text" name="name" onChange={(e) => { setName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
@@ -48,7 +48,7 @@ export default function Home() {
           <input type="email" name="email" onChange={(e) => { setEmail(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
           <label htmlFor="" className='form-label'>Password</label>
           <input type="password" name="password" onChange={(e) => { setPassword(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-          <button type="submit" className="btn btn-primary px-3">Submit</button>
+          <button type="submit" className="btn btn-primary myBtn px-3">Submit</button>
         </form>
       </main>
     </div>
