@@ -106,7 +106,7 @@ const Profile = () => {
     // Account Details
     const Details = () => {
         return(
-            <div className="px-2 myBox br-20 bg-body my-5">
+            <div className="px-2  br-10 bg-body my-5 myCard">
                 <div className="box-holder d-flex jaa">
                     {/* Profile Image */}
                     <div className="d-flex jac r-boda column my-3 text-center">
@@ -139,7 +139,12 @@ const Profile = () => {
 
     return(
         <div className="container">
-            <Details />
+            <div className="text-center py-3 mt-5 myFlag">
+                <h4 className="text-center">Account Details</h4>
+            </div>            <Details />
+            <div className="text-center py-3 myFlag">
+                <h4 className="text-center">Account Statement</h4>
+            </div>
             <Transfer />
             <Recieved />
             
