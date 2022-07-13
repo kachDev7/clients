@@ -38,9 +38,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1>Standard Trust Group</h1>
-        <form className=" container myForm p-3 bg-body" onSubmit={hanldeSubmit}>
+      <main className="p-3">
+        <div className="d-flex jac column">
+          <Image src="/logo.png" height={80} width={80} className="circle" />
+          <h1 className='my-3 mb-5'>Standard Trust Group</h1>
+        </div>
+        <form className=" container myForm mb-5 p-3 bg-body" onSubmit={hanldeSubmit}>
           <h3 className="text-center">Register</h3>
           <label htmlFor="Name" className='form-label'>Name</label>
           <input type="text" name="name" onChange={(e) => { setName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />

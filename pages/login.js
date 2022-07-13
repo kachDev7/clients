@@ -33,17 +33,20 @@ export default function Home() {
     })
   }
   return (
-    <div className={styles.container}>
+    <div className="">
       <Head>
         <title>New Standard App</title>
         <meta name="Standard trust group" content="Your favorite banking site" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1>Standard Trust Group</h1>
-        <form className="container myForm p-3" onSubmit={hanldeLogin}>
-          <h3 className='text-center'>Login</h3>
+      <main className="p-3">
+        <div className="d-flex jac column">
+          <Image src="/logo.png" height={80} width={80} className="circle" />
+          <h1 className='my-3 mb-5'>Standard Trust Group</h1>
+        </div>
+        <form className="container myForm mb-5 p-3" onSubmit={hanldeLogin}>
+          <h3 className='text-center'>Sign In</h3>
           <label htmlFor="" className='form-label'>Email</label>
           <input type="email" name="email" onChange={(e) => { setEmail(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
           <label htmlFor="" className='form-label'>Password</label>
