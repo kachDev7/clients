@@ -91,10 +91,10 @@ export default function Home() {
                     {/* Profile Image */}
                     <div className="d-flex jac r-boda column my-3">
                         <div className="circle boda-s d-flex jac detailsImageBox">
-                            <Image src="/logo1.jpg" alt="Image" height={150} width={150} className="circle boda-s" />
+                            <Image src="/logo1.jpg" alt="Image" height={100} width={100} className="circle boda-s" />
                         </div>
                         <p className="fw-bold mt-2 text-secondary">Account Number</p>
-                        <h4 className="text-center fw-bold">123456799-<span className="text-success">Active</span></h4>
+                        <h4 className="text-center fw-bold">123456799-<span className="text-primary">Active</span></h4>
                     </div>
                     <div className="detailsTextBox py-3">
                         <p className="fw-bold text-secondary">Account Name</p>
