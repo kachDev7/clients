@@ -42,13 +42,13 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Standard Trust Group</h1>
-        <form className="container" onSubmit={hanldeLogin}>
-          <h3>Login</h3>
+        <form className="container myForm p-3" onSubmit={hanldeLogin}>
+          <h3 className='text-center'>Login</h3>
           <label htmlFor="" className='form-label'>Email</label>
           <input type="email" name="email" onChange={(e) => { setEmail(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
           <label htmlFor="" className='form-label'>Password</label>
           <input type="password" name="password" onChange={(e) => { setPassword(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-          <button type="submit" className="btn btn-primary px-3">Submit</button>
+          <button type="submit" className="myBtn btn btn-primary px-3">Submit</button>
         </form>
       </main>
     </div>

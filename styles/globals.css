@@ -148,9 +148,9 @@ a {
 .detailsImageBox{
   margin-right: 10px;
 }
-.myBg{
+/* .myBg{
   background-image: url('../public/bg1.jpg');
-}
+} */
 .myBtn{
   display: block;
   width: 100%;

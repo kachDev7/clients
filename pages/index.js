@@ -40,8 +40,8 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Standard Trust Group</h1>
-        <form className="container myForm py-3 bg-body" onSubmit={hanldeSubmit}>
-          <h3>Register</h3>
+        <form className=" container myForm p-3 bg-body" onSubmit={hanldeSubmit}>
+          <h3 className="text-center">Register</h3>
           <label htmlFor="Name" className='form-label'>Name</label>
           <input type="text" name="name" onChange={(e) => { setName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
           <label htmlFor="password" className='form-label'>Email</label>
