@@ -67,7 +67,7 @@ const Profile = () => {
     // Table
     const Table = ({users}) => {
         return(
-            <table class="table table-success table-striped br-20">
+            <table className="table table-success table-striped br-20">
                 <thead>
                     <tr>
                     <th scope="col">Name</th>
