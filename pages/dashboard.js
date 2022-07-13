@@ -51,9 +51,7 @@ const Profile = () => {
         return(
             <div className="container">
                 <h1>Transfer</h1>
-                {sentAmount.map((item) => {
-                    return(<h1 key={item.name}>{item.name}</h1>)
-                })}
+                <Table users={sentAmount} />
             </div>
         )
     }
@@ -61,10 +59,41 @@ const Profile = () => {
         return(
             <div className="container">
                 <h1>Recieved</h1>
-                {recieved.map((item) => {
-                   return (<h1 key={item.name}>{item.name} : {item.amount} : {item.date}</h1>)
-                })}
+                <Table users={recieved} />
             </div>
+        )
+    }
+
+    // Table
+    const Table = ({users}) => {
+        return(
+            <table class="table table-success table-striped br-20">
+                <thead>
+                    <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <InnerTable users={users} />
+                </tbody>
+            </table>
+        )
+    }
+    const InnerTable = ({users}) => {
+        return(
+            <>
+                {users.map((item) => {
+                   return (
+                    <tr>
+                        <td scope="row" className="">{item.name}</td>
+                        <td>{item.amount}</td>
+                        <td className="color1-bg">{item.date}</td>
+                    </tr>
+                   )
+                })}
+            </>
         )
     }
 
