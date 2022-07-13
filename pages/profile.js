@@ -11,6 +11,7 @@ export default function Home() {
     const [tfAmount, setTfAmount] = useState(0)
     const [balance, setBalance] = useState(0)
     const [token, setToken] = useState(0)
+    const [tfName, setTfName] = useState("");
 
 
     const router = useRouter();
@@ -45,6 +46,7 @@ export default function Home() {
                     headers: {'Content-Type' : 'application/json'},
                     body: JSON.stringify({
                        "tfAmount" : tfAmount,
+                       "tfName" : tfName,
                         "userEmail": userData.email
                     })
                 })
@@ -167,17 +169,26 @@ export default function Home() {
             <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+                    <div className="text-center">
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div className="myFlag py-3 mx-3">
+                            <h1 className="modal-title" id="exampleModalToggleLabel">Transfer Funds</h1>
+                        </div>
                     </div>
                     <div className="modal-body">
 
                         {/* Transfer form */}
-                        <form>
-                            <h1>Amount to transfer</h1>
-                            <input type="number" onChange={(e) => { setTfAmount(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-                            <button onClick={brew} className="btn btn-primary px-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Transfer</button>
+                        <form className="my-3">
+                            <h5>Reciepiant Details</h5>
+                            <input type="text" placeholder="Account Name" onChange={(e) => { setTfName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
+                            <input type="number" placeholder="Account Number"  className='form-control mb-3 input-width mb-4'  />
+                            <div className="d-flex jac">
+                                <input type="number" placeholder="Amount" onChange={(e) => { setTfAmount(e.target.value)}} className='form-control mb-3 input-width mb-4 mx-2'  />
+                                <input type="number" placeholder="Swift ID"  className='form-control mb-3 input-width mb-4 '  />
+                            </div>
+                            <input type="text" placeholder="Bank Name" className='form-control mb-3 input-width mb-4'  />
+                            <input type="text" placeholder="Naration" className='form-control mb-3 input-width mb-4'  />
+                            <button onClick={brew} className="btn btn-primary px-3 myBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Transfer</button>
                         </form>
 
                     </div>
@@ -190,14 +201,17 @@ export default function Home() {
                 <div className="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="d-flex jac column py-2">
+                        <button type="button" className=" mb-3 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h1 className="modal-title text-center" id="exampleModalToggleLabel2">Verify Transfer</h1>
+                        <p className="text-center lead">
+                            Provide verification Code sent to your email.
+                        </p>
                     </div>
                     <div className="modal-body">
                         <form onSubmit={handleTransfer}>
                             <input type="number" onChange={(e) => { setToken(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-                            <button type="submit" className="btn btn-primary px-3" data-bs-dismiss="modal">Verify</button>
+                            <button type="submit" className="btn btn-primary px-3 myBtn" data-bs-dismiss="modal">Verify</button>
                         </form>
                     </div>
                     {/* <div className="modal-footer">
