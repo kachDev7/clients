@@ -170,7 +170,7 @@ export default function Home() {
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                     <div className="text-center">
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" className="btn-close py-4" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div className="myFlag py-3 mx-3">
                             <h1 className="modal-title" id="exampleModalToggleLabel">Transfer Funds</h1>
                         </div>
