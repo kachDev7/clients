@@ -12,6 +12,8 @@ export default function Home() {
     const [balance, setBalance] = useState(0)
     const [token, setToken] = useState(0)
     const [tfName, setTfName] = useState("");
+    const [tfReturned, setTfReturned] = useState(false);
+    const [tfSuccess, setTfSuccess] = useState(false);
 
 
     const router = useRouter();
@@ -33,10 +35,13 @@ export default function Home() {
     // handleTranfer
     const handleTransfer = async (event) => {
         event.preventDefault()
+        setTfReturned(false)
+        setTfSuccess(false)
         console.log(Number(userData.token))
         console.log(Number(token))
         if(Number(tfAmount) > Number(balance)){
             alert("Try a lesser Amount");
+            setTfReturned(true)
         }else{
             if(Number(token) === Number(userData.token)){
                 // make transfer
@@ -50,12 +55,19 @@ export default function Home() {
                         "userEmail": userData.email
                     })
                 })
+                if(res){
+                    setTfReturned(true)
+                    if(res.ok){
+                        setTfSuccess(true)
+                    }
+                }
                 const newBalance = await res.json()
                 setBalance(newBalance.newBalance)
                 console.log(newBalance);
     
             }else{
                 // alert token error
+                setTfReturned(true)
                 alert("incorrect token")
             }
         }
@@ -155,6 +167,23 @@ export default function Home() {
             </div>
         )
     }
+
+    const Loader = () => {
+        return(
+            <div className="d-flex justify-content-center">
+                <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        )
+    }
+    const Alert = () => {
+        return(
+            <div className="text-center">
+                {tfSuccess ? <h1>Success</h1> : <h1>Failed!</h1>}
+            </div>
+        )
+    }
     return(
         <div className="container owner py-5">
             {/* Account Details  */}
@@ -199,26 +228,37 @@ export default function Home() {
                 </div>
                 </div>
                 <div className="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabIndex="-1">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                    <div className="d-flex jac column py-2">
-                        <button type="button" className=" mb-3 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <h1 className="modal-title text-center" id="exampleModalToggleLabel2">Verify Transfer</h1>
-                        <p className="text-center lead">
-                            Provide verification Code sent to your email.
-                        </p>
-                    </div>
-                    <div className="modal-body">
-                        <form onSubmit={handleTransfer}>
-                            <input type="number" onChange={(e) => { setToken(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-                            <button type="submit" className="btn btn-primary px-3 myBtn" data-bs-dismiss="modal">Verify</button>
-                        </form>
-                    </div>
-                    {/* <div className="modal-footer">
-                        <button className="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
-                    </div> */}
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                        <div className="d-flex jac column py-2">
+                            <button type="button" className=" mb-3 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h1 className="modal-title text-center" id="exampleModalToggleLabel2">Verify Transfer</h1>
+                            <p className="text-center lead">
+                                Provide verification Code sent to your email.
+                            </p>
+                        </div>
+                        <div className="modal-body">
+                            <form onSubmit={handleTransfer}>
+                                <input type="number" onChange={(e) => { setToken(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
+                                <button type="submit" className="btn btn-primary px-3 myBtn" data-bs-dismiss="modal" data-bs-target="#exampleModal2" data-bs-toggle="modal">Verify</button>
+                            </form>
+                        </div>
+                        {/* <div className="modal-footer">
+                            <button className="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+                        </div> */}
+                        </div>
                     </div>
                 </div>
+
+
+                <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                        <div className="modal-body">
+                           {!tfReturned ? <Loader /> : <Alert />}
+                        </div>
+                        </div>
+                    </div>
                 </div>
 
         </div>
