@@ -67,11 +67,11 @@ const Profile = () => {
     // Table
     const Table = ({users}) => {
         return(
-            <table className="table table-success table-striped br-20">
+            <table className="table table-primary table-striped br-20">
                 <thead>
                     <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Amount</th>
+                    <th scope="col">Amount($)</th>
                     <th scope="col">Date</th>
                     </tr>
                 </thead>
