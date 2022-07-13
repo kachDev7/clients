@@ -86,7 +86,7 @@ const Profile = () => {
             <>
                 {users.map((item) => {
                    return (
-                    <tr>
+                    <tr key={item.name}>
                         <td scope="row" className="">{item.name}</td>
                         <td>{item.amount}</td>
                         <td className="color1-bg">{item.date}</td>
