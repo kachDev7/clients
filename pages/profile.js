@@ -94,15 +94,15 @@ export default function Home() {
                             <Image src="/logo1.jpg" alt="Image" height={100} width={100} className="circle boda-s" />
                         </div>
                         <div className="px-3">
-                            <p className="mt-2 text-secondary">Account Number</p>
+                            <p className="mt-2 text-secondary"><i className="bi bi-credit-card-2-back mx-1"></i>Account Number</p>
                             <h4 className="text-center">123456799</h4>
                             <span className="text-primary fw-bold">Active</span>
                         </div>
                     </div>
                     <div className="detailsTextBox py-3">
-                        <p className="text-secondary">Account Name</p>
+                        <p className="text-secondary"><i className="bi bi-person mx-1"></i>Account Name</p>
                         <h4 className="">{userData.name}</h4>
-                        <p className="text-secondary mt-3">Balance</p>
+                        <p className="text-secondary mt-3"><i className="bi bi-coin mx-1"></i>Balance</p>
                         <h4 className="text-success fw-bold fs text-center">${balance}</h4>
                     </div>
                 </div>
