@@ -142,7 +142,7 @@ const Profile = () => {
             <div className="text-center py-3 mt-5 myFlag">
                 <h4 className="text-center">Account Details</h4>
             </div>            <Details />
-            <div className="text-center py-3 myFlag">
+            <div className="text-center mb-5 py-3 myFlag">
                 <h4 className="text-center">Account Statement</h4>
             </div>
             <Transfer />
