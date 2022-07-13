@@ -123,11 +123,11 @@ const Profile = () => {
                     {/* Profile Image */}
                     <div className="d-flex jac column my-3 text-center">
                         <div className="">
-                            <p className="text-secondary"><i class="bi bi-person-rolodex mx-1"></i>Swift Id</p>
+                            <p className="text-secondary"><i className="bi bi-person-rolodex mx-1"></i>Swift Id</p>
                             <h4 className="text-center">564323</h4>
                         </div>
                         <div className="px-3">
-                            <p className="mt-2 text-secondary"><i class="bi bi-shield-lock mx-1"></i>Secret PIN</p>
+                            <p className="mt-2 text-secondary"><i className="bi bi-shield-lock mx-1"></i>Secret PIN</p>
                             <h4 className="text-center">****</h4>
                         </div>
                     </div>
