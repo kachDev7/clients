@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   const router = useRouter();
@@ -53,6 +54,10 @@ export default function Home() {
           <input type="password" name="password" onChange={(e) => { setPassword(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
           <button type="submit" className="btn btn-primary myBtn px-3">Submit</button>
         </form>
+
+        <div className="container text-center mb-3">
+          Already have an account? <Link href="/login"><a className="t-a">Login</a></Link>
+        </div>
       </main>
     </div>
   )

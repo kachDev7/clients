@@ -14,6 +14,7 @@ export default function Home() {
     const [tfName, setTfName] = useState("");
     const [tfReturned, setTfReturned] = useState(false);
     const [tfSuccess, setTfSuccess] = useState(false);
+    const [free, setFree] = useState(0);
 
 
     const router = useRouter();
@@ -29,6 +30,7 @@ export default function Home() {
 
         setUserData(data.user);
         setBalance(data.user.amount)
+        setFree(1)
         console.log(localStorage.getItem('token'))
     }
 
@@ -186,11 +188,12 @@ export default function Home() {
                     <i className="bi bi-check2-circle h1 "></i>
                     <h1>Sent</h1>
                     <p className="text-dark">Transfer to <strong>{tfName}</strong> was successful!</p>
-                    <button className="t-button" data-bs-dismiss="modal" data-bs-target="#exampleModal2"><Link href='/dashboard/#newly'><a className="t-a">View in Bank Statement <i className="bi bi-arrow-right-short h1 "></i></a></Link></button>
+                    <button className="t-button" data-bs-dismiss="modal" data-bs-target="#exampleModal2"><Link href='/dashboard/#newly'><a className="t-a">View in Bank Statement <i className="bi bi-arrow-right"></i></a></Link></button>
                 </div> :
                     <div className="d-flex column text-danger">
                         <i className="bi bi-x-circle h1"></i>
                         <h1>Failed</h1>
+                        <p className="text-dark">Transfer to <strong>{tfName}</strong> failed. Try again Later!</p>
                     </div>
                  }
             </div>
@@ -202,7 +205,9 @@ export default function Home() {
         return(
             <div className="d-flex jac column waiter">
                 <Image src="/logo.png" height={150} width={150} className="circle" />
-                <Loader />
+                <div className="py-3">
+                        <Loader />
+                </div>
             </div>
         )
     }
@@ -220,7 +225,7 @@ export default function Home() {
     return(
         <div className="container owner py-5">
             {/* Account Details  */}
-            {balance ? <Body /> : <Waiter />}
+            {free ? <Body /> : <Waiter />}
             
 
             {/* This is the modal region */}
@@ -283,7 +288,7 @@ export default function Home() {
 
 
                 <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
+                    <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
                         <div className="modal-body">
                            {!tfReturned ? <Loader /> : <Alert />}

@@ -148,7 +148,9 @@ const Profile = () => {
             return(
                 <div className="d-flex jac column waiter">
                     <Image src="/logo.png" height={150} width={150} className="circle" />
-                    <Loader />
+                    <div className="py-3">
+                        <Loader />
+                    </div>
                 </div>
             )
         }

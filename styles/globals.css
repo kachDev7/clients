@@ -136,7 +136,7 @@ a {
   border-left: 3px solid #0d6efd;
 }
 .waiter{
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
   background-color: var(--bag);
 }
