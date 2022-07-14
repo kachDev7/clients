@@ -188,7 +188,7 @@ export default function Home() {
     // Waiter
     const Waiter = () => {
         return(
-            <div className="d-flex jac waiter">
+            <div className="d-flex jac column waiter">
                 <Image src="/logo.png" height={150} width={150} className="circle" />
                 <Loader />
             </div>
