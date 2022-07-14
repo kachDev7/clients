@@ -184,12 +184,31 @@ export default function Home() {
             </div>
         )
     }
-    return(
-        <div className="container owner py-5">
-            {/* Account Details  */}
+    
+    // Waiter
+    const Waiter = () => {
+        return(
+            <div className="d-flex jac waiter">
+                <Image src="/logo.png" height={150} width={150} className="circle" />
+                <Loader />
+            </div>
+        )
+    }
+
+    // body
+    const Body = () => {
+        return(
+            <>
             <Details />
             <Carousel />
             <Action />
+            </>
+        )
+    }
+    return(
+        <div className="container owner py-5">
+            {/* Account Details  */}
+            {balance ? <Body /> : <Waiter />}
             
 
             {/* This is the modal region */}
