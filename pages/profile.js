@@ -177,10 +177,22 @@ export default function Home() {
             </div>
         )
     }
+
     const Alert = () => {
         return(
             <div className="text-center">
-                {tfSuccess ? <h1>Success</h1> : <h1>Failed!</h1>}
+                {tfSuccess ? 
+                <div className="d-flex column text-primary">
+                    <i className="bi bi-check2-circle h1 "></i>
+                    <h1>Sent</h1>
+                    <p className="text-dark">Transfer to <strong>{tfName}</strong> was successful!</p>
+                    <button className="t-button" data-bs-dismiss="modal" data-bs-target="#exampleModal2"><Link href='/dashboard/#newly'><a className="t-a">View in Bank Statement <i className="bi bi-arrow-right-short h1 "></i></a></Link></button>
+                </div> :
+                    <div className="d-flex column text-danger">
+                        <i className="bi bi-x-circle h1"></i>
+                        <h1>Failed</h1>
+                    </div>
+                 }
             </div>
         )
     }

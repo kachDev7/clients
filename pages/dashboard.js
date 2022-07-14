@@ -9,6 +9,7 @@ const Profile = () => {
     const [recieved, setRecieved] = useState([])
     const [balance, setBalance] = useState(0)
     const [sentAmount, setSentAmount] = useState([])
+    const [free, setFree] = useState(0);
 
 
     const router = useRouter();
@@ -27,7 +28,8 @@ const Profile = () => {
         setBalance(userData.amount)
         setRecieved(data.user.recieved)
         setSentAmount(data.user.sentAmount)
-        console.log(recieved)
+        setFree(1)
+        console.log(balance)
         console.log(sentAmount)
     }
 
@@ -61,6 +63,7 @@ const Profile = () => {
             <div className="container">
                 <h1 className="mb-2">Recieved</h1>
                 <Table users={recieved} />
+                
             </div>
         )
     }
@@ -137,18 +140,53 @@ const Profile = () => {
         )
     }
 
+
+
+
+        // Waiter
+        const Waiter = () => {
+            return(
+                <div className="d-flex jac column waiter">
+                    <Image src="/logo.png" height={150} width={150} className="circle" />
+                    <Loader />
+                </div>
+            )
+        }
+
+        // Spinner
+        const Loader = () => {
+            return(
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            )
+        }
+    
+        // body
+        const Body = () => {
+            return(
+                    <div className="container">
+                        <div className="text-center py-3 mt-5 myFlag">
+                            <h4 className="text-center">Account Details</h4>
+                        </div>            
+                        <Details />
+                        <div className="text-center mb-5 py-3 myFlag">
+                            <h4 className="text-center">Account Statement</h4>
+                        </div>
+                        <Transfer />
+                        <div id="newly"></div>
+                        <Recieved />
+                                
+                    </div>
+            )
+        }
     return(
-        <div className="container">
-            <div className="text-center py-3 mt-5 myFlag">
-                <h4 className="text-center">Account Details</h4>
-            </div>            <Details />
-            <div className="text-center mb-5 py-3 myFlag">
-                <h4 className="text-center">Account Statement</h4>
-            </div>
-            <Transfer />
-            <Recieved />
-            
-        </div>
+        <>
+        {free ? <Body /> : <Waiter />}
+        {/* <Body /> */}
+        </>
     )
 }
 
