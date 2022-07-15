@@ -111,7 +111,7 @@ export default function Home() {
                         </div>
                         <div className="px-3">
                             <p className="mt-2 text-secondary"><i className="bi bi-credit-card-2-back mx-1"></i>Account Number</p>
-                            <h4 className="text-center">123456799</h4>
+                            <h4 className="text-center">{userData.accNo}</h4>
                             <span className="text-primary fw-bold">Active</span>
                         </div>
                     </div>

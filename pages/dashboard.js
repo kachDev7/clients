@@ -29,7 +29,7 @@ const Profile = () => {
         setRecieved(data.user.recieved)
         setSentAmount(data.user.sentAmount)
         setFree(1)
-        console.log(balance)
+        console.log()
         console.log(sentAmount)
     }
 
@@ -95,7 +95,7 @@ const Profile = () => {
             <>
                 {users.map((item) => {
                    return (
-                    <tr key={item.name}>
+                    <tr key={item.date}>
                         <td scope="row" className="">{item.name}</td>
                         <td>{item.amount}</td>
                         <td className="color1-bg">{item.date}</td>
@@ -119,7 +119,7 @@ const Profile = () => {
                         </div>
                         <div className="px-3">
                             <p className="mt-2 text-secondary"><i className="bi bi-credit-card-2-back mx-1"></i>Account Number</p>
-                            <h4 className="text-center">123456799</h4>
+                            <h4 className="text-center">{userData.accNo}</h4>
                         </div>
                     </div>
 
