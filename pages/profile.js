@@ -107,7 +107,7 @@ export default function Home() {
                     {/* Profile Image */}
                     <div className="d-flex jac r-boda column my-3 text-center">
                         <div className="circle boda-s d-flex jac detailsImageBox">
-                            <Image src="/logo1.jpg" alt="Image" height={100} width={100} className="circle boda-s" />
+                            <Image src={userData.photo} alt="Image" height={100} width={100} className="circle boda-s" />
                         </div>
                         <div className="px-3">
                             <p className="mt-2 text-secondary"><i className="bi bi-credit-card-2-back mx-1"></i>Account Number</p>
