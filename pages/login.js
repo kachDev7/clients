@@ -70,7 +70,7 @@ export default function Home() {
         </form>
 
         <div className="container text-center mb-3">
-          Don't have an Account yet? <Link href="/"><a className="t-a">Create Account</a></Link>
+          <p className="lead">Don't have an Account yet? <Link href="/"><a className="t-a">Create Account</a></Link></p>
         </div>
       </main>
     </div>
