@@ -194,6 +194,7 @@ export default function Home() {
                         <i className="bi bi-x-circle h1"></i>
                         <h1>Failed</h1>
                         <p className="text-dark">Transfer to <strong>{tfName}</strong> failed. Try again Later!</p>
+                        <button className="btn btn-primary px-3 m-3" data-bs-dismiss="modal" data-bs-target="#exampleModal2">Ok</button>
                     </div>
                  }
             </div>

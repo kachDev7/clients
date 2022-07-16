@@ -41,11 +41,11 @@ export default function Home() {
     const Alert = () => {
         return(
             <div className="text-center">
-                {tfSuccess ? 
+                {chgSuccess ? 
                 <div className="d-flex column text-primary">
                     <i className="bi bi-check2-circle h1 "></i>
                     <h1>Done</h1>
-                    <p className="text-dark">Transfer to <strong>{tfName}</strong> was successful!</p>
+                    <p className="text-dark"><strong>{field}</strong> updated successful!</p>
                     <button className="btn btn-primary px-3" data-bs-dismiss="modal" data-bs-target="#exampleModal2">Ok</button>
                 </div> :
                     <div className="d-flex column text-danger">
@@ -81,11 +81,16 @@ export default function Home() {
                 "field" : field
             })
         })
-        if(res.ok){
-            const data = await res.json();
-            console.log(data, 'Done!')
-        }else{
-            alert('update error')
+        if(res){
+            setChgReturned(true)
+            if(res.ok){
+                const data = await res.json()
+                console.log(data, "Done!")
+                setChgSuccess(true)
+            }else{
+                setChgSuccess(false)
+                console.log("failed!")
+            }
         }
     }
 
@@ -211,8 +216,8 @@ export default function Home() {
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-body">
-                        {/* {!chgReturned ? <Loader /> : <Alert />} */}
-                        done
+                        {!chgReturned ? <Loader /> : <Alert />}
+                        
                     </div>
                 </div>
             </div>

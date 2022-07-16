@@ -78,7 +78,7 @@ export default function Home() {
       <Head>
         <title>New Standard App</title>
         <meta name="Standard trust group" content="Your favorite banking site" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <main className="p-3">
