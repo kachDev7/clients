@@ -87,6 +87,7 @@ export default function Home() {
             if(res.ok){
                 const data = await res.json()
                 console.log(data, "Done!")
+                setUsers(data.newUsers)
                 setChgSuccess(true)
             }else{
                 setChgSuccess(false)
