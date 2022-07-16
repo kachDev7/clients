@@ -5,15 +5,20 @@ import { useEffect, useState } from 'react'
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link'
 
+
 export default function Home() {
     // State variables
     const [free, setFree] = useState(false);
     const [chgReturned, setChgReturned] = useState(false);
     const [chgSuccess, setChgSuccess] = useState(false)
+    const [delReturned, setDelReturned] = useState(false);
+    const [delSuccess, setDelSuccess] = useState(false)
     const [users, setUsers] = useState({})
     const [target, setTarget] = useState('')
     const [typUser, setTypUser] = useState('')
     const [field, setField] = useState('')
+
+    const router = useRouter()
 
     // Waiter
     const Waiter = () => {
@@ -57,6 +62,24 @@ export default function Home() {
             </div>
         )
     }
+    const Alert2 = () => {
+        return(
+            <div className="text-center">
+                {delSuccess ? 
+                <div className="d-flex column text-primary">
+                    <i className="bi bi-check2-circle h1 "></i>
+                    <h1>User Deleted Successfully!</h1>
+                    <button className="btn btn-primary px-3" data-bs-dismiss="modal" data-bs-target="#exampleModal4">Ok</button>
+                </div> :
+                    <div className="d-flex column text-danger">
+                        <i className="bi bi-x-circle h1"></i>
+                        <h1>Failed</h1>
+                        <button className="btn btn-primary px-3" data-bs-dismiss="modal" data-bs-target="#exampleModal4">Ok</button>
+                    </div>
+                    }
+            </div>
+        )
+    }
 
     // Get all Users
     const populateUsers = async () => {
@@ -71,6 +94,8 @@ export default function Home() {
 
     const handleChange = async (event) => {
         event.preventDefault()
+        setChgReturned(false)
+        setChgSuccess(false)
         const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/update', {
             method: 'POST',
             headers: {
@@ -96,23 +121,44 @@ export default function Home() {
         }
     }
 
+    // Delete User
+    const handleDelete = async (event) => {
+        event.preventDefault();
+        setDelReturned(false)
+        setDelSuccess(false)
+        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/delete', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                'typUser' : typUser
+            }),  
+        });
+
+        if(res){
+            setDelReturned(true)
+            if(res.ok){
+                const data = await res.json()
+                console.log(data, "Done!")
+                setUsers(data.newUsers)
+                setDelSuccess(true)
+            }else{
+                setDelSuccess(false)
+                console.log("failed!")
+            }
+        }
+    }
+
     useEffect(() => {
-        // const token = localStorage.getItem('token');
-        // if(token){
-        //     const user = jwt.decode(token)
-        //     if(!user){
-        //         localStorage.removeItem('token');
-        //         console.log("I'm here")
-        //         router.push('/')
+        const token = localStorage.getItem('adminToken');
+        if(token === "Confirmed10"){
+            populateUsers();
+        }else{
+            router.push('/secure/admin_login')
+        }
 
-        //     }else{
-        //         populateUsers();
-        //     }
-        // }else{
-        //     router.push('/login')
-        // }
-
-        populateUsers();
+        // populateUsers();
     }, [])
 
     const AdminDetails = () => {
@@ -120,20 +166,25 @@ export default function Home() {
             <div className="px-2  br-10 bg-body my-5 myCard">
             <div className="box-holder d-flex jaa">
                 {/* Profile Image */}
-                <div className="d-flex jac r-boda column my-3 text-center">
+                <div className="d-flex jac  column my-3 text-center">
+                    <div className="boda-b mb-3">
+                        <p className="text-secondary"><i className="bi bi-globe mx-1"></i>Website</p>
+                        <p className="text-center wrap">www.standardtrustgroup.com</p>
+                    </div>
+
                     <div className="">
-                        <p className="text-secondary"><i className="bi bi-person mx-1"></i>Website</p>
-                        <p className="text-center">www.standardtrustgroup.com</p>
+                        <p className="text-secondary"><i className="bi bi-at mx-1"></i>Email</p>
+                        <p className="text-center">standardtrustgroup319@gmail.com</p>
                     </div>
                 </div>
 
                 {/* Profile Image */}
-                <div className="d-flex jac column my-3 text-center">
+                {/* <div className="d-flex jac column my-3 text-center">
                     <div className="">
                         <p className="text-secondary"><i className="bi bi-person-rolodex mx-1"></i>Email</p>
-                        <p className="text-center">stg@gmail.com</p>
+                        <p className="text-center">standardtrustgroup319@gmail.com</p>
                     </div>
-                </div>
+                </div> */}
 
             </div>
         </div>
@@ -170,7 +221,7 @@ export default function Home() {
                                     <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email); setField("password")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button>
                                 </div>
                                 <div className="d-flex boda-b py-2">
-                                    <button className="btn btn-danger myBtn px-3" onClick={( )=> {setTypUser(user.email); setField("password")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Delete and Block User</button>
+                                    <button className="btn btn-danger myBtn px-3" onClick={( )=> {setTypUser(user.email); setField("password")}} data-bs-target="#exampleModal3" data-bs-toggle="modal">Delete and Block User</button>
                                 </div>
                             </div>
                         </div>
@@ -216,12 +267,38 @@ export default function Home() {
             </div>
         </div>
 
+        {/* 3 */}
+        <div className="modal fade" id="exampleModal3" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-body">
+                        <h2 className="text-center py-3">Delete User?</h2>
+                        <form onSubmit={handleDelete}>
+                            <button type="submit" className="btn my-3 btn-danger px-3 myBtn" data-bs-dismiss="modal" data-bs-target="#exampleModal4" data-bs-toggle="modal">Delete</button>
+                            <p className="btn btn-primary px-3 mb-3 myBtn" data-bs-dismiss="modal" data-bs-target="#exampleModal3">Cancel</p>
+                        </form>
+                        <p className="text-muted py-3">Note! Whatever changes you make here will reflect at the Database.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-body">
                         {!chgReturned ? <Loader /> : <Alert />}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="modal fade" id="exampleModal4" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-body">
+                        {!delReturned ? <Loader /> : <Alert2 />}
                         
                     </div>
                 </div>
