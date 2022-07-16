@@ -69,7 +69,8 @@ export default function Home() {
         }
     }
 
-    const handleChange = async () => {
+    const handleChange = async (event) => {
+        event.preventDefault()
         const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/update', {
             method: 'POST',
             headers: {
@@ -166,6 +167,9 @@ export default function Home() {
                                 <div className="d-flex jab boda-b py-2">
                                     <h4><span className='text-secondary'>Password :</span>  {user.password}</h4>
                                     <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email); setField("password")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button>
+                                </div>
+                                <div className="d-flex boda-b py-2">
+                                    <button className="btn btn-danger myBtn px-3" onClick={( )=> {setTypUser(user.email); setField("password")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Delete and Block User</button>
                                 </div>
                             </div>
                         </div>
