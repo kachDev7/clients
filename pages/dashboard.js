@@ -110,28 +110,32 @@ const Profile = () => {
     const Details = () => {
         return(
             <div className="px-2  br-10 bg-body my-5 myCard">
-                <div className="box-holder d-flex jaa">
+                <div className="box-holder d-flex">
                     {/* Profile Image */}
-                    <div className="d-flex jac r-boda column my-3 text-center">
-                        <div className="">
-                            <p className="text-secondary"><i className="bi bi-person mx-1"></i>Account Name</p>
-                            <h4 className="text-center">{userData.name}</h4>
-                        </div>
-                        <div className="px-3">
-                            <p className="mt-2 text-secondary"><i className="bi bi-credit-card-2-back mx-1"></i>Account Number</p>
-                            <h4 className="text-center">{userData.accNo}</h4>
+                    <div className="r-boda w-100">
+                        <div className="d-flex jac  column my-3 text-center">
+                            <div className="">
+                                <p className="text-secondary"><i className="bi bi-person mx-1"></i>Account Name</p>
+                                <h4 className="text-center">{userData.name}</h4>
+                            </div>
+                            <div className="px-3">
+                                <p className="mt-2 text-secondary"><i className="bi bi-credit-card-2-back mx-1"></i>Account Number</p>
+                                <h4 className="text-center">{userData.accNo}</h4>
+                            </div>
                         </div>
                     </div>
 
                     {/* Profile Image */}
-                    <div className="d-flex jac column my-3 text-center">
-                        <div className="">
-                            <p className="text-secondary"><i className="bi bi-person-rolodex mx-1"></i>Swift Id</p>
-                            <h4 className="text-center">564323</h4>
-                        </div>
-                        <div className="px-3">
-                            <p className="mt-2 text-secondary"><i className="bi bi-shield-lock mx-1"></i>Secret PIN</p>
-                            <h4 className="text-center">****</h4>
+                    <div className=" w-100">
+                        <div className="d-flex jac column my-3 text-center">
+                            <div className="">
+                                <p className="text-secondary"><i className="bi bi-person-rolodex mx-1"></i>Swift Id</p>
+                                <h4 className="text-center">564323</h4>
+                            </div>
+                            <div className="px-3">
+                                <p className="mt-2 text-secondary"><i className="bi bi-shield-lock mx-1"></i>Secret PIN</p>
+                                <h4 className="text-center">****</h4>
+                            </div>
                         </div>
                     </div>
 

@@ -11,6 +11,7 @@ export default function Home() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [info, setInfo] = useState(false)
+  const [blockedInfo, setBlockedINfo] = useState(false)
 
   // handle submit
   const hanldeLogin = async (event) => {
@@ -25,12 +26,16 @@ export default function Home() {
       })
     }).then(async res => {
       const data = await res.json();
-      console.log(data)
+      console.log(data.blocked)
 
       if(data.user){
-        localStorage.setItem('token', data.token)
-        // alert("Login Successfully!")
-        router.push("/profile")
+        if(data.blocked === "yes"){
+          setBlockedINfo(true)
+        }else{
+          localStorage.setItem('token', data.token)
+          // alert("Login Successfully!")
+          router.push("/profile")
+        }
       }else{
         setInfo(true)
       }
@@ -45,6 +50,13 @@ export default function Home() {
       </div>
     )
   }
+  const BlockedInfo = () => {
+    return(
+      <div className="alert alert-danger" role="alert">
+        This user has been <strong>Restricted</strong> due to voilation of <strong>STG Internal Policy</strong>. Please visit loacal branch for clarification.
+      </div>
+    )
+  }
   return (
     <div className="">
       <Head>
@@ -53,19 +65,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="p-3">
+      <div className="d-flex jac">
+      <main className="p-3 max-w">
         <div className="d-flex jac column">
           <Image src="/logo.png" height={80} width={80} className="circle" />
           <h1 className='my-3 mb-5'>Standard Trust Group</h1>
         </div>
-        <form className="container myForm mb-5 p-3" onSubmit={hanldeLogin}>
+        <form className="container myForm mb-5 p-3 " onSubmit={hanldeLogin}>
           <h3 className='text-center'>Sign In</h3>
           {/* alert */}
           {info && <Info />}
+          {blockedInfo && <BlockedInfo />}
           <label htmlFor="" className='form-label'>Email</label>
-          <input type="email" name="email" onChange={(e) => { setEmail(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4'  />
+          <input type="email" name="email" onChange={(e) => { setEmail(e.target.value); setInfo(false); setBlockedINfo(false)}} className='form-control mb-3 input-width mb-4'  />
           <label htmlFor="" className='form-label'>Password</label>
-          <input type="password" name="password" onChange={(e) => { setPassword(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4'  />
+          <input type="password" name="password" onChange={(e) => { setPassword(e.target.value); setInfo(false); setBlockedINfo(false)}} className='form-control mb-3 input-width mb-4'  />
           <button type="submit" className="myBtn btn btn-primary px-3">Submit</button>
         </form>
 
@@ -73,6 +87,7 @@ export default function Home() {
           <p className="lead">Do not have an Account yet? <Link href="/"><a className="t-a">Create Account</a></Link></p>
         </div>
       </main>
+      </div>
     </div>
   )
 }

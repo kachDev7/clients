@@ -4,6 +4,34 @@ import jwt from 'jsonwebtoken';
 import Link from 'next/link'
 import Image from 'next/image'
 
+let count1 = 0;
+
+setInterval(() => {
+    count1 += 1
+    
+    if(count1 === 4){
+        count1 = 1
+    }
+    console.log(count1)
+
+    switch (count1) {
+        case 1:
+            // console.log('here 1')
+            document.getElementById('c-slider').style.left = "0vw";
+            break;
+        case 2:
+            // console.log('here 2')
+            document.getElementById('c-slider').style.left = "-81vw";
+            break;
+        case 3:
+            // console.log('here 3')
+            document.getElementById('c-slider').style.left = "-161vw";
+            break;
+    
+    }
+}, 3000);
+
+
 
 export default function Home() {
 
@@ -15,6 +43,9 @@ export default function Home() {
     const [tfReturned, setTfReturned] = useState(false);
     const [tfSuccess, setTfSuccess] = useState(false);
     const [free, setFree] = useState(0);
+    const [count, setCount] = useState(1)
+
+
 
 
     const router = useRouter();
@@ -26,12 +57,16 @@ export default function Home() {
             }
         })
         const data = await res.json();
-        console.log(data);
-
+        if(data.user.blocked === "yes"){
+            router.push('/login')
+        }else{
+            
         setUserData(data.user);
         setBalance(data.user.amount)
         setFree(1)
         console.log(localStorage.getItem('token'))
+        }
+
     }
 
     // handleTranfer
@@ -103,44 +138,58 @@ export default function Home() {
     const Details = () => {
         return(
             <div className="px-2 myBox br-20 bg-body">
-                <div className="box-holder d-flex jaa">
+                <div className="box-holder d-flex">
                     {/* Profile Image */}
-                    <div className="d-flex jac r-boda column my-3 text-center">
-                        <div className="circle boda-s d-flex jac detailsImageBox">
-                            <Image src={userData.photo} alt="Image" height={100} width={100} className="circle boda-s" />
-                        </div>
-                        <div className="px-3">
-                            <p className="mt-2 text-secondary"><i className="bi bi-credit-card-2-back mx-1"></i>Account Number</p>
-                            <h4 className="text-center">{userData.accNo}</h4>
-                            <span className="text-primary fw-bold">Active</span>
+                    <div className="r-boda w-100">
+                        <div className="d-flex  jaa column my-3 text-center">
+                            <div className="circle boda-s d-flex jac detailsImageBox">
+                                <Image src={userData.photo} alt="Image" height={100} width={100} className="circle boda-s" />
+                            </div>
+                            <div className="pl-20">
+                                <p className="mt-2 text-secondary"><i className="bi bi-credit-card-2-back mx-1"></i>Account Number</p>
+                                <h4 className="text-center">{userData.accNo}</h4>
+                                <span className="text-primary fw-bold">Active</span>
+                            </div>
                         </div>
                     </div>
-                    <div className="detailsTextBox py-3">
-                        <p className="text-secondary"><i className="bi bi-person mx-1"></i>Account Name</p>
-                        <h4 className="">{userData.name}</h4>
-                        <p className="text-secondary mt-3"><i className="bi bi-coin mx-1"></i>Balance</p>
-                        <h4 className="text-success fw-bold fs text-center">${balance}</h4>
+                    <div className=" w-100">
+                        <div className="detailsTextBox d-flex jab column my-3">
+                            <div className="mt-3">
+                                <p className="text-secondary"><i className="bi bi-person mx-1"></i>Account Name</p>
+                                <h4 className="">{userData.name}</h4>
+                            </div>
+                            <div className="mt-5">
+                                <p className="text-secondary"><i className="bi bi-coin mx-1"></i>Balance</p>
+                                <h4 className="text-success  fs ">${balance}</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         )
     }
 
+    
+
+  
     // Carousel
     const Carousel = () => {
+
+        
+        
         return (
-            <div id="carouselExampleInterval" className="carousel slide my-5" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active" data-bs-interval="2000">
-                    <Image src="/blog-1.png" className="d-block w-100" alt="Image" height={200} width={300} />
-                    </div>
-
-                    <div className="carousel-item" data-bs-interval="2000">
-                    <Image src="/blog-2.png" className="d-block w-100" alt="Image" height={200} width={300} />
-                    </div>
-
-                    <div className="carousel-item" data-bs-interval="2000">
-                    <Image src="/blog-3.png" className="d-block w-100" alt="Image" height={200} width={300} />
+            <div className="d-flex jac py-5">
+                <div id="c-holder" className="c-w">
+                    <div className="c-slider d-flex" id="c-slider">
+                        <div className="c-item c-w">
+                            <img src="/blog-2.png" className="c-image" alt="..." />
+                        </div>
+                        <div className="c-item c-w">
+                            <img src="/blog-1.png" className="c-image" alt="..." />
+                        </div>
+                        <div className="c-item c-w">
+                            <img src="/blog-3.png" className="c-image" alt="..." />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,7 +201,7 @@ export default function Home() {
     const Action = () => {
         return(
             <div className="container my-3 bg-body p-5 br-10">
-                <div className="actionHolder container text-center">
+                <div className="actionHolder container text-center d-md-flex jaa">
                     <div className="br-10 myBox br-10 container py-3 my-5" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
                         <i className="bi bi-arrow-up-circle h1 text-primary"></i>
                         <h3>Transfer Funds</h3>
@@ -220,6 +269,16 @@ export default function Home() {
             <Details />
             <Carousel />
             <Action />
+
+            <div className="spread d-md-flex jab owner py-5">
+                <div className="container my-5">
+                    <h1 className="fw-bold text-center text-primary">Why Us?</h1>
+                    <p className="lead text-center">
+                    It is with uthmost care and sensitivity we meticulously safe guard your privacy, we employ the most modern and advanced encryption methods in our security and privacy protection algorithms. your safety is our future as partners.
+                    </p>
+                </div>
+            </div>
+
             </>
         )
     }

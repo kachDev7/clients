@@ -14,7 +14,7 @@ const Navbar = () => {
 
             {/* <!-- Hambuger menu : visible @md --> */}
             <h1 className="fw-bold d-flex jac"  data-bs-toggle="collapse" data-bs-target="#navmenu">
-                 <span className="text-primary">...</span>
+                 <span className="text-primary d-md-none">...</span>
             </h1>
             {/* <!-- Nav links --> */}
             <div className="collapse navbar-collapse text-center" id="navmenu">

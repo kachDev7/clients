@@ -13,10 +13,14 @@ export default function Home() {
     const [chgSuccess, setChgSuccess] = useState(false)
     const [delReturned, setDelReturned] = useState(false);
     const [delSuccess, setDelSuccess] = useState(false)
+    const [blkReturned, setBlkReturned] = useState(false);
+    const [blkSuccess, setBlkSuccess] = useState(false)
     const [users, setUsers] = useState({})
     const [target, setTarget] = useState('')
     const [typUser, setTypUser] = useState('')
     const [field, setField] = useState('')
+    const [anyUser, setAnyUser] = useState(true)
+    const[blocked, setBlocked] = useState(false)
 
     const router = useRouter()
 
@@ -80,12 +84,33 @@ export default function Home() {
             </div>
         )
     }
+    const Alert3 = () => {
+        return(
+            <div className="text-center">
+                {blkSuccess ? 
+                <div className="d-flex column text-primary">
+                    <i className="bi bi-check2-circle h1 "></i>
+                    <h1>User Blocked Successfully!</h1>
+                    <button className="btn btn-primary px-3" data-bs-dismiss="modal" data-bs-target="#exampleModal6">Ok</button>
+                </div> :
+                    <div className="d-flex column text-danger">
+                        <i className="bi bi-x-circle h1"></i>
+                        <h1>Failed</h1>
+                        <button className="btn btn-primary px-3" data-bs-dismiss="modal" data-bs-target="#exampleModal6">Ok</button>
+                    </div>
+                    }
+            </div>
+        )
+    }
 
     // Get all Users
     const populateUsers = async () => {
         const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/admin');
         if(res.ok){
             const usersRes = await res.json()
+            if(Object.keys(usersRes).length === 0){
+                setAnyUser(false)
+            }
             setUsers(usersRes)
             setFree(true)
             console.log(users)
@@ -149,6 +174,34 @@ export default function Home() {
             }
         }
     }
+    // Block User
+    const handleBlock = async (event) => {
+        event.preventDefault();
+        setBlkReturned(false)
+        setBlkSuccess(false)
+        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/block', {
+            method: 'PUT',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                'typUser' : typUser
+            }),  
+        });
+
+        if(res){
+            setBlkReturned(true)
+            if(res.ok){
+                const data = await res.json()
+                console.log(data, "Done!")
+                setUsers(data.newUsers)
+                setBlkSuccess(true)
+            }else{
+                setBlkSuccess(false)
+                console.log("failed!")
+            }
+        }
+    }
 
     useEffect(() => {
         const token = localStorage.getItem('adminToken');
@@ -196,32 +249,44 @@ export default function Home() {
         return(
             <div className="container">
                 {users.map(user => {
+                    if(user.blocked){
+                        setBlocked(true)
+                    }
                     return(
-                        <div className="container " key={user.email}>
-                            <div className="my-5 p-3 myBox">
-                                <Image src={user.photo} height={50} width={50} className="circle" />
-                                <div className="d-flex jab boda-b py-2">
-                                    <h4><span className='text-secondary'>Name :</span> {user.name}</h4>
-                                    {/* <button onClick={( )=> {setTypUser(user.email)}} className="btn btn-primary px-3"  data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button> */}
-                                </div>
-                                <div className="d-flex jab boda-b py-2">
-                                    <h4><span className='text-secondary'>Email :</span> {user.email}</h4>
-                                    {/* <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email)}} data-bs-target="#exampleModal2" data-bs-toggle="modal">Change</button> */}
-                                </div>
-                                <div className="d-flex jab boda-b py-2">
-                                    <h4><span className='text-secondary'>User Token :</span> {user.token}</h4>
-                                    <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email); setField("token")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button>
-                                </div>
-                                <div className="d-flex jab boda-b py-2">
-                                    <h4><span className='text-secondary'>Balance :</span>  {user.amount}</h4>
-                                    <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email); setField("amount")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button>
-                                </div>
-                                <div className="d-flex jab boda-b py-2">
-                                    <h4><span className='text-secondary'>Password :</span>  {user.password}</h4>
-                                    <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email); setField("password")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button>
-                                </div>
-                                <div className="d-flex boda-b py-2">
-                                    <button className="btn btn-danger myBtn px-3" onClick={( )=> {setTypUser(user.email); setField("password")}} data-bs-target="#exampleModal3" data-bs-toggle="modal">Delete and Block User</button>
+                        <div className="container" key={user.email}>
+                            <div className="">
+                                <div className="my-5 p-3  mag-s myBox">
+                                    <Image src={user.photo} height={50} width={50} className="circle" />
+                                    <div className="d-flex jab boda-b py-2">
+                                        <h4><span className='text-secondary'>Name :</span> {user.name}</h4>
+                                        {/* <button onClick={( )=> {setTypUser(user.email)}} className="btn btn-primary px-3"  data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button> */}
+                                    </div>
+                                    <div className="d-flex jab boda-b py-2">
+                                        <h4><span className='text-secondary'>Email :</span> {user.email}</h4>
+                                        {/* <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email)}} data-bs-target="#exampleModal2" data-bs-toggle="modal">Change</button> */}
+                                    </div>
+                                    <div className="d-flex jab boda-b py-2">
+                                        <h4><span className='text-secondary'>User Token :</span> {user.token}</h4>
+                                        <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email); setField("token")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button>
+                                    </div>
+                                    <div className="d-flex jab boda-b py-2">
+                                        <h4><span className='text-secondary'>Balance :</span>  {user.amount}</h4>
+                                        <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email); setField("amount")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button>
+                                    </div>
+                                    <div className="d-flex jab boda-b py-2">
+                                        <h4><span className='text-secondary'>Password :</span>  {user.password}</h4>
+                                        <button className="btn btn-primary px-3" onClick={( )=> {setTypUser(user.email); setField("password")}} data-bs-target="#exampleModal" data-bs-toggle="modal">Change</button>
+                                    </div>
+
+                                    <div className="d-flex boda-b py-2">
+                                        {(user.blocked === "no") ? <button className="btn btn-danger myBtn px-3" onClick={( )=> {setTypUser(user.email);}} data-bs-target="#exampleModal5" data-bs-toggle="modal">Block User</button> : 
+                                        <button className="btn btn-secondary myBtn px-3">Blocked</button>
+                                        }
+                                    </div>
+                                    <div className="d-flex boda-b py-2">
+                                        <button className="btn btn-danger myBtn px-3" onClick={( )=> {setTypUser(user.email);}} data-bs-target="#exampleModal3" data-bs-toggle="modal">Delete User</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -242,7 +307,7 @@ export default function Home() {
                     <div className="container">
                         <h1 className="text-center">All Users</h1>
                     </div>
-                <AllUSers />
+                {anyUser ? <AllUSers /> : <div className='he-50 d-flex jac text-center'><h2 className='text-muted'>No Users</h2></div>}
             </div>
         )
     }
@@ -282,6 +347,21 @@ export default function Home() {
                 </div>
             </div>
         </div>
+        {/* Block User modal5 */}
+        <div className="modal fade" id="exampleModal5" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-body">
+                        <h2 className="text-center py-3">Block User?</h2>
+                        <form onSubmit={handleBlock}>
+                            <button type="submit" className="btn my-3 btn-danger px-3 myBtn" data-bs-dismiss="modal" data-bs-target="#exampleModal6" data-bs-toggle="modal">Block</button>
+                            <p className="btn btn-primary px-3 mb-3 myBtn" data-bs-dismiss="modal" data-bs-target="#exampleModal5">Cancel</p>
+                        </form>
+                        <p className="text-muted py-3">Note! Whatever changes you make here will reflect at the Database.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -299,6 +379,16 @@ export default function Home() {
                 <div className="modal-content">
                     <div className="modal-body">
                         {!delReturned ? <Loader /> : <Alert2 />}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="modal fade" id="exampleModal6" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-body">
+                        {!blkReturned ? <Loader /> : <Alert3 />}
                         
                     </div>
                 </div>

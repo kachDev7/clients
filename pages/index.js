@@ -80,32 +80,33 @@ export default function Home() {
         <meta name="Standard trust group" content="Your favorite banking site" />
         <link rel="icon" href="/logo.png" />
       </Head>
+      <div className="d-flex jac">
+        <main className="p-3 max-w">
+          <div className="d-flex jac column">
+            <Image src="/logo.png" height={80} width={80} className="circle" />
+            <h1 className='my-3 mb-5'>Standard Trust Group</h1>
+          </div>
+          <form className=" container myForm mb-5 p-3 bg-body" onSubmit={hanldeSubmit}>
+            <h3 className="text-center">Register</h3>
+            {info && <Info />}
+            <label htmlFor="Name" className='form-label'>Name</label>
+            <input type="text" name="name" onChange={(e) => { setName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
+            <label htmlFor="password" className='form-label'>Email</label>
+            <input type="email" name="email" onChange={(e) => { setEmail(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
+            <label htmlFor="" className='form-label'>Choose Password</label>
+            <input type="password" name="password" onChange={(e) => { setPassword(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
+            <label htmlFor="" className='form-label'>Refferal Code</label>
+            <input type="number" name="number" onChange={(e) => { setRefCode(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4'  />
+            <label htmlFor="image2" className='form-label'>Passport Sized Photo</label>
+            <input type="file" name="image2" onChange={(e) => { setPhoto(e.target.files[0])}} className='form-control mb-3 input-width mb-4'  />
+            <button type="submit" className="btn btn-primary myBtn px-3">Submit</button>
+          </form>
 
-      <main className="p-3">
-        <div className="d-flex jac column">
-          <Image src="/logo.png" height={80} width={80} className="circle" />
-          <h1 className='my-3 mb-5'>Standard Trust Group</h1>
-        </div>
-        <form className=" container myForm mb-5 p-3 bg-body" onSubmit={hanldeSubmit}>
-          <h3 className="text-center">Register</h3>
-          {info && <Info />}
-          <label htmlFor="Name" className='form-label'>Name</label>
-          <input type="text" name="name" onChange={(e) => { setName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-          <label htmlFor="password" className='form-label'>Email</label>
-          <input type="email" name="email" onChange={(e) => { setEmail(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-          <label htmlFor="" className='form-label'>Choose Password</label>
-          <input type="password" name="password" onChange={(e) => { setPassword(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-          <label htmlFor="" className='form-label'>Refferal Code</label>
-          <input type="number" name="number" onChange={(e) => { setRefCode(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4'  />
-          <label htmlFor="image2" className='form-label'>Passport Sized Photo</label>
-          <input type="file" name="image2" onChange={(e) => { setPhoto(e.target.files[0])}} className='form-control mb-3 input-width mb-4'  />
-          <button type="submit" className="btn btn-primary myBtn px-3">Submit</button>
-        </form>
-
-        <div className="container text-center mb-3">
-          Already have an account? <Link href="/login"><a className="t-a">Login</a></Link>
-        </div>
-      </main>
+          <div className="container text-center mb-3">
+            Already have an account? <Link href="/login"><a className="t-a">Login</a></Link>
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
