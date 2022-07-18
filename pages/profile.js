@@ -14,15 +14,15 @@ setInterval(() => {
     }
     switch (count1) {
         case 1:
-            // console.log('here 1')
+            
             document.getElementById('c-slider').style.left = "0vw";
             break;
         case 2:
-            // console.log('here 2')
+            
             document.getElementById('c-slider').style.left = "-80vw";
             break;
         case 3:
-            // console.log('here 3')
+        
             document.getElementById('c-slider').style.left = "-160vw";
             break;
     

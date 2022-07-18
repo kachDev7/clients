@@ -13,7 +13,7 @@ export default function Home() {
   const [refCode, setRefCode] = useState(0);
   const [photo, setPhoto] = useState('')
   const [info, setInfo] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
       // upload image to cloudinary
       const postImage = async (image) => {
@@ -28,7 +28,7 @@ export default function Home() {
         // image object from cloudinary
         if(!data.ok){
             alert("Error Posting: Check Image")
-            setIsLoading(false)
+            setLoading(false)
         }else{
             return data.json()
         }
@@ -36,8 +36,10 @@ export default function Home() {
   // handle submit
   const hanldeSubmit = async (event) => {
     event.preventDefault()
+    setLoading(true)
     if(refCode !== "119905"){
       setInfo(true)
+      setLoading(false)
       return;
     }
 
@@ -54,11 +56,13 @@ export default function Home() {
           "password" : password,
           "photo" : resImage[0].secure_url
         })
-      }).then(async res => {
-        const data = await res.json();
-        console.log(data)
+      }).then(res => {
+        console.log(res)
         if(res.ok){
           router.push('/login');
+        }else{
+          alert("Failed: Duplicate Email")
+          setLoading(false)
         }
       })
     })
@@ -99,7 +103,15 @@ export default function Home() {
             <input type="number" name="number" onChange={(e) => { setRefCode(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4'  />
             <label htmlFor="image2" className='form-label'>Passport Sized Photo</label>
             <input type="file" name="image2" onChange={(e) => { setPhoto(e.target.files[0])}} className='form-control mb-3 input-width mb-4'  />
-            <button type="submit" className="btn btn-primary myBtn px-3">Register</button>
+            {loading ? 
+          <button className="btn btn-primary myBtn" type="button" disabled>
+          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+
+        :
+
+          <button type="submit" className="myBtn btn btn-primary px-3">Sign In</button>}
           </form>
 
           <div className="container text-center lead mb-3">

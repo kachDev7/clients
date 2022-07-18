@@ -12,10 +12,14 @@ export default function Home() {
   const [password, setPassword] = useState("")
   const [info, setInfo] = useState(false)
   const [blockedInfo, setBlockedINfo] = useState(false)
+  const [loading, setLoading] = useState(false)
+
 
   // handle submit
   const hanldeLogin = async (event) => {
     event.preventDefault()
+
+    setLoading(true)
 
     await fetch('https://secure-oasis-37765.herokuapp.com/api/login', {
       method: "POST",
@@ -26,10 +30,11 @@ export default function Home() {
       })
     }).then(async res => {
       const data = await res.json();
-      console.log(data.blocked)
+      // console.log(data.blocked)
 
       if(data.user){
         if(data.blocked === "yes"){
+          setLoading(false)
           setBlockedINfo(true)
         }else{
           localStorage.setItem('token', data.token)
@@ -37,6 +42,7 @@ export default function Home() {
           router.push("/profile")
         }
       }else{
+        setLoading(false)
         setInfo(true)
       }
     })
@@ -62,7 +68,7 @@ export default function Home() {
       <Head>
         <title>New Standard App</title>
         <meta name="Standard trust group" content="Your favorite banking site" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <div className="d-flex jac">
@@ -77,10 +83,18 @@ export default function Home() {
           {info && <Info />}
           {blockedInfo && <BlockedInfo />}
           <label htmlFor="" className='form-label'>Email</label>
-          <input type="email" name="email" onChange={(e) => { setEmail(e.target.value); setInfo(false); setBlockedINfo(false)}} className='form-control mb-3 input-width mb-4'  />
+          <input type="email" name="email" onChange={(e) => { setEmail(e.target.value); setInfo(false); setBlockedINfo(false)}} className='form-control mb-3 input-width mb-4' required  />
           <label htmlFor="" className='form-label'>Password</label>
-          <input type="password" name="password" onChange={(e) => { setPassword(e.target.value); setInfo(false); setBlockedINfo(false)}} className='form-control mb-3 input-width mb-4'  />
-          <button type="submit" className="myBtn btn btn-primary px-3">Sign In</button>
+          <input type="password" name="password" onChange={(e) => { setPassword(e.target.value); setInfo(false); setBlockedINfo(false)}} className='form-control mb-3 input-width mb-4' required />
+          {loading ? 
+          <button className="btn btn-primary myBtn" type="button" disabled>
+          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+
+        :
+
+          <button type="submit" className="myBtn btn btn-primary px-3">Sign In</button>}
         </form>
 
         <div className="container text-center mb-3">
