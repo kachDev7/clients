@@ -113,7 +113,7 @@ export default function Home() {
             }
             setUsers(usersRes)
             setFree(true)
-            console.log(users)
+            // console.log(users)
         }
     }
 
@@ -136,12 +136,12 @@ export default function Home() {
             setChgReturned(true)
             if(res.ok){
                 const data = await res.json()
-                console.log(data, "Done!")
+                // console.log(data, "Done!")
                 setUsers(data.newUsers)
                 setChgSuccess(true)
             }else{
                 setChgSuccess(false)
-                console.log("failed!")
+                // console.log("failed!")
             }
         }
     }
@@ -165,12 +165,12 @@ export default function Home() {
             setDelReturned(true)
             if(res.ok){
                 const data = await res.json()
-                console.log(data, "Done!")
+                // console.log(data, "Done!")
                 setUsers(data.newUsers)
                 setDelSuccess(true)
             }else{
                 setDelSuccess(false)
-                console.log("failed!")
+                // console.log("failed!")
             }
         }
     }
@@ -193,12 +193,12 @@ export default function Home() {
             setBlkReturned(true)
             if(res.ok){
                 const data = await res.json()
-                console.log(data, "Done!")
+                // console.log(data, "Done!")
                 setUsers(data.newUsers)
                 setBlkSuccess(true)
             }else{
                 setBlkSuccess(false)
-                console.log("failed!")
+                // console.log("failed!")
             }
         }
     }

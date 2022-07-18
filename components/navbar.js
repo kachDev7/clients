@@ -20,10 +20,10 @@ const Navbar = () => {
             <div className="collapse navbar-collapse text-center" id="navmenu">
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
-                        <Link href='/login'><a className="nav-link fw-bold">Sign In</a></Link>
+                        <Link href='/'><a className="nav-link fw-bold">Sign Up</a></Link>
                     </li>
                     <li className="nav-item">
-                        <Link href='/'><a className="nav-link fw-bold">Sign Up</a></Link>
+                        <Link href='/login'><a className="nav-link fw-bold">Log out</a></Link>
                     </li>
                     <li className="nav-item">
                         <Link href='/about'><a className="nav-link fw-bold">About Us</a></Link>

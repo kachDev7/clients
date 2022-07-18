@@ -12,8 +12,6 @@ setInterval(() => {
     if(count1 === 4){
         count1 = 1
     }
-    console.log(count1)
-
     switch (count1) {
         case 1:
             // console.log('here 1')
@@ -21,11 +19,11 @@ setInterval(() => {
             break;
         case 2:
             // console.log('here 2')
-            document.getElementById('c-slider').style.left = "-81vw";
+            document.getElementById('c-slider').style.left = "-80vw";
             break;
         case 3:
             // console.log('here 3')
-            document.getElementById('c-slider').style.left = "-161vw";
+            document.getElementById('c-slider').style.left = "-160vw";
             break;
     
     }
@@ -64,7 +62,7 @@ export default function Home() {
         setUserData(data.user);
         setBalance(data.user.amount)
         setFree(1)
-        console.log(localStorage.getItem('token'))
+        // console.log(localStorage.getItem('token'))
         }
 
     }
@@ -74,8 +72,8 @@ export default function Home() {
         event.preventDefault()
         setTfReturned(false)
         setTfSuccess(false)
-        console.log(Number(userData.token))
-        console.log(Number(token))
+        // console.log(Number(userData.token))
+        // console.log(Number(token))
         if(Number(tfAmount) > Number(balance)){
             alert("Try a lesser Amount");
             setTfReturned(true)
@@ -100,7 +98,7 @@ export default function Home() {
                 }
                 const newBalance = await res.json()
                 setBalance(newBalance.newBalance)
-                console.log(newBalance);
+                // console.log(newBalance);
     
             }else{
                 // alert token error
@@ -121,7 +119,7 @@ export default function Home() {
             const user = jwt.decode(token)
             if(!user){
                 localStorage.removeItem('token');
-                console.log("I'm here")
+                // console.log("I'm here")
                 router.push('/')
 
             }else{
@@ -137,7 +135,7 @@ export default function Home() {
     // Account Details
     const Details = () => {
         return(
-            <div className="px-2 myBox br-20 bg-body">
+            <div className="px-2 myBox br-5 bg-body">
                 <div className="box-holder d-flex">
                     {/* Profile Image */}
                     <div className="r-boda w-100">
@@ -178,8 +176,8 @@ export default function Home() {
         
         
         return (
-            <div className="d-flex jac py-5">
-                <div id="c-holder" className="c-w">
+            <div className="d-flex jac py-5 d-sm-none">
+                <div id="c-holder" className="c-w br-10">
                     <div className="c-slider d-flex" id="c-slider">
                         <div className="c-item c-w">
                             <img src="/blog-2.png" className="c-image" alt="..." />
@@ -188,7 +186,7 @@ export default function Home() {
                             <img src="/blog-1.png" className="c-image" alt="..." />
                         </div>
                         <div className="c-item c-w">
-                            <img src="/blog-3.png" className="c-image" alt="..." />
+                            <img src="/blog1.jpg" className="c-image" alt="..." />
                         </div>
                     </div>
                 </div>
@@ -265,25 +263,25 @@ export default function Home() {
     // body
     const Body = () => {
         return(
-            <>
-            <Details />
-            <Carousel />
-            <Action />
+            <div className="container">
+                <Details />
+                <Carousel />
+                <Action />
 
-            <div className="spread d-md-flex jab owner py-5">
-                <div className="container my-5">
-                    <h1 className="fw-bold text-center text-primary">Why Us?</h1>
-                    <p className="lead text-center">
-                    It is with uthmost care and sensitivity we meticulously safe guard your privacy, we employ the most modern and advanced encryption methods in our security and privacy protection algorithms. your safety is our future as partners.
-                    </p>
+                <div className="spread d-md-flex jab owner py-5">
+                    <div className="container my-5">
+                        <h1 className="fw-bold text-center text-primary">Why Us?</h1>
+                        <p className="lead text-center">
+                        It is with uthmost care and sensitivity we meticulously safe guard your privacy, we employ the most modern and advanced encryption methods in our security and privacy protection algorithms. your safety is our future as partners.
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            </>
+            </div>
         )
     }
     return(
-        <div className="container owner py-5">
+        <div className="owner py-5">
             {/* Account Details  */}
             {free ? <Body /> : <Waiter />}
             
@@ -304,15 +302,19 @@ export default function Home() {
 
                         {/* Transfer form */}
                         <form className="my-3">
-                            <h5>Reciepiant Details</h5>
+                            <h5>Recipient Details</h5>
                             <input type="text" placeholder="Account Name" onChange={(e) => { setTfName(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
                             <input type="number" placeholder="Account Number"  className='form-control mb-3 input-width mb-4'  />
                             <div className="d-flex jac">
                                 <input type="number" placeholder="Amount" onChange={(e) => { setTfAmount(e.target.value)}} className='form-control mb-3 input-width mb-4 mx-2'  />
-                                <input type="number" placeholder="Swift ID"  className='form-control mb-3 input-width mb-4 '  />
+                                <input type="text" placeholder="Swift ID"  className='form-control mb-3 input-width mb-4 '  />
                             </div>
                             <input type="text" placeholder="Bank Name" className='form-control mb-3 input-width mb-4'  />
-                            <input type="text" placeholder="Naration" className='form-control mb-3 input-width mb-4'  />
+                            <div className="d-flex jac">
+                                <input type="text" placeholder="Route Number" className='form-control mb-3 input-width mb-4 mx-2'  />
+                                <input type="text" placeholder="Bank Address"  className='form-control mb-3 input-width mb-4 '  />
+                            </div>
+                            <input type="text" placeholder="Narration" className='form-control mb-3 input-width mb-4'  />
                             <button onClick={brew} className="btn btn-primary px-3 myBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Transfer</button>
                         </form>
 
@@ -328,15 +330,15 @@ export default function Home() {
                         <div className="modal-content">
                         <div className="d-flex jac column py-2">
                             <button type="button" className=" mb-3 btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            <h1 className="modal-title text-center" id="exampleModalToggleLabel2">Verify Transfer</h1>
+                            <h1 className="modal-title text-center" id="exampleModalToggleLabel2">OTP</h1>
                             <p className="text-center lead">
-                                Provide verification Code sent to your email.
+                                Provide <strong>OTP</strong> sent to your email.
                             </p>
                         </div>
                         <div className="modal-body">
                             <form onSubmit={handleTransfer}>
                                 <input type="number" onChange={(e) => { setToken(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
-                                <button type="submit" className="btn btn-primary px-3 myBtn" data-bs-dismiss="modal" data-bs-target="#exampleModal2" data-bs-toggle="modal">Verify</button>
+                                <button type="submit" className="btn btn-primary px-3 myBtn" data-bs-dismiss="modal" data-bs-target="#exampleModal2" data-bs-toggle="modal">Verify Transfer</button>
                             </form>
                         </div>
                         {/* <div className="modal-footer">

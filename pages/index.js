@@ -99,10 +99,10 @@ export default function Home() {
             <input type="number" name="number" onChange={(e) => { setRefCode(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4'  />
             <label htmlFor="image2" className='form-label'>Passport Sized Photo</label>
             <input type="file" name="image2" onChange={(e) => { setPhoto(e.target.files[0])}} className='form-control mb-3 input-width mb-4'  />
-            <button type="submit" className="btn btn-primary myBtn px-3">Submit</button>
+            <button type="submit" className="btn btn-primary myBtn px-3">Register</button>
           </form>
 
-          <div className="container text-center mb-3">
+          <div className="container text-center lead mb-3">
             Already have an account? <Link href="/login"><a className="t-a">Login</a></Link>
           </div>
         </main>

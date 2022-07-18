@@ -80,7 +80,7 @@ export default function Home() {
           <input type="email" name="email" onChange={(e) => { setEmail(e.target.value); setInfo(false); setBlockedINfo(false)}} className='form-control mb-3 input-width mb-4'  />
           <label htmlFor="" className='form-label'>Password</label>
           <input type="password" name="password" onChange={(e) => { setPassword(e.target.value); setInfo(false); setBlockedINfo(false)}} className='form-control mb-3 input-width mb-4'  />
-          <button type="submit" className="myBtn btn btn-primary px-3">Submit</button>
+          <button type="submit" className="myBtn btn btn-primary px-3">Sign In</button>
         </form>
 
         <div className="container text-center mb-3">

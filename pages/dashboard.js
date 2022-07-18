@@ -22,15 +22,15 @@ const Profile = () => {
             }
         })
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
 
         setUserData(data.user);
         setBalance(userData.amount)
         setRecieved(data.user.recieved)
         setSentAmount(data.user.sentAmount)
         setFree(1)
-        console.log()
-        console.log(sentAmount)
+        // console.log()
+        // console.log(sentAmount)
     }
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const Profile = () => {
             const user = jwt.decode(token)
             if(!user){
                 localStorage.removeItem('token');
-                console.log("I'm here")
+                // console.log("I'm here")
                 router.push('/')
 
             }else{
@@ -130,7 +130,7 @@ const Profile = () => {
                         <div className="d-flex jac column my-3 text-center">
                             <div className="">
                                 <p className="text-secondary"><i className="bi bi-person-rolodex mx-1"></i>Swift Id</p>
-                                <h4 className="text-center">564323</h4>
+                                <h4 className="text-center">ADKBLTOY</h4>
                             </div>
                             <div className="px-3">
                                 <p className="mt-2 text-secondary"><i className="bi bi-shield-lock mx-1"></i>Secret PIN</p>
