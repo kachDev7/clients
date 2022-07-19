@@ -46,7 +46,7 @@ export default function Home() {
     Promise.all([postImage(photo)])
 
     .then(resImage => {
-      console.log(resImage)
+      // console.log(resImage)
       fetch('https://secure-oasis-37765.herokuapp.com/api/register', {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
@@ -57,7 +57,7 @@ export default function Home() {
           "photo" : resImage[0].secure_url
         })
       }).then(res => {
-        console.log(res)
+        // console.log(res)
         if(res.ok){
           router.push('/login');
         }else{
