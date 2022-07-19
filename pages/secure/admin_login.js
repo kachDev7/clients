@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <div className="">
       <Head>
-        <title>Secured Trust Admin</title>
+        <title>Admin Login - Standard Trust Group</title>
         <meta name="Standard trust group" content="Your favorite banking site" />
         <link rel="icon" href="/logo.png" />
       </Head>

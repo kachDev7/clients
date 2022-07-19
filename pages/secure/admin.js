@@ -315,6 +315,12 @@ export default function Home() {
     // return
     return(
         <>
+      <Head>
+        <title>Admin- Standard Trust Group</title>
+        <meta name="Admin - Standard Trust Group" content="Your favorite trustworthy banking platform" />
+        <link rel="icon" href="/logo.png" />
+      </Head>
+
         {free ? <Body /> : <Waiter />}
 
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

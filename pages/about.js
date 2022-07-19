@@ -9,8 +9,8 @@ export default function Home() {
     return(
         <div className="myBg">
       <Head>
-        <title>About - Standard trust group</title>
-        <meta name="About - Standard trust group" content="Your favorite trustworthy banking platform" />
+        <title>About - Standard Trust Group</title>
+        <meta name="About - Standard Trust Group" content="Your favorite trustworthy banking platform" />
         <link rel="icon" href="/logo.png" />
       </Head>
 
