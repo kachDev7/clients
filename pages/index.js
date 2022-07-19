@@ -111,11 +111,11 @@ export default function Home() {
 
         :
 
-          <button type="submit" className="myBtn btn btn-primary px-3">Sign In</button>}
+          <button type="submit" className="lav myBtn btn btn-primary px-3">Sign In</button>}
           </form>
 
           <div className="container text-center lead mb-3">
-            Already have an account? <Link href="/login"><a className="t-a">Login</a></Link>
+            Already have an account?  <Link href="/login"><a className="t-a">Login</a></Link>
           </div>
         </main>
       </div>
