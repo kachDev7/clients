@@ -282,6 +282,11 @@ export default function Home() {
     }
     return(
         <div className="owner py-5">
+            <Head>
+                <title>About - Standard Trust Group</title>
+                <meta name="Profile - Standard Trust Group" content="Your favorite trustworthy banking platform" />
+                <link rel="icon" href="/logo.png" />
+            </Head>
             {/* Account Details  */}
             {free ? <Body /> : <Waiter />}
             

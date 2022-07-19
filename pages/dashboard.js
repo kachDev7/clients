@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react"
 import jwt from 'jsonwebtoken'
 import Image from "next/image";
+import Head from "next/head";
 
 const Profile = () => {
 
@@ -192,6 +193,12 @@ const Profile = () => {
         }
     return(
         <>
+        <Head>
+        <title>Dashboard - Standard Trust Group</title>
+        <meta name="Dashboard - Standard Trust Group" content="Your favorite trustworthy banking platform" />
+        <link rel="icon" href="/logo.png" />
+      </Head>
+
         {free ? <Body /> : <Waiter />}
         {/* <Body /> */}
         </>

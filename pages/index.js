@@ -80,10 +80,11 @@ export default function Home() {
   return (
     <div className="myBg">
       <Head>
-        <title>New Standard App</title>
-        <meta name="Standard trust group" content="Your favorite banking site" />
+        <title>Register - Standard Trust Group</title>
+        <meta name="Register - Standard Trust Group" content="Your favorite trustworthy banking platform" />
         <link rel="icon" href="/logo.png" />
       </Head>
+
       <div className="d-flex jac">
         <main className="p-3 max-w">
           <div className="d-flex jac column">

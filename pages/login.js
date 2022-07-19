@@ -66,8 +66,8 @@ export default function Home() {
   return (
     <div className="">
       <Head>
-        <title>New Standard App</title>
-        <meta name="Standard trust group" content="Your favorite banking site" />
+        <title>Login - Standard Trust Group</title>
+        <meta name="Login - Standard Trust Group" content="Your favorite trustworthy banking platform" />
         <link rel="icon" href="/logo.png" />
       </Head>
 
