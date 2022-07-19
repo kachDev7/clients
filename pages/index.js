@@ -19,8 +19,8 @@ export default function Home() {
       const postImage = async (image) => {
         const formData = new FormData()
         formData.append("file", image)
-        formData.append('upload_preset', 'sha-upload');
-        const data = await fetch('https://api.cloudinary.com/v1_1/dgiqiys8o/image/upload', {
+        formData.append('upload_preset', 'brave-set');
+        const data = await fetch('https://api.cloudinary.com/v1_1/brave77/image/upload', {
             method: 'POST',
             body: formData
         });

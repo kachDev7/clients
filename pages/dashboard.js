@@ -95,10 +95,11 @@ const Profile = () => {
         return(
             <>
                 {users.map((item) => {
+                    const myAmount = Intl.NumberFormat("en-US")
                    return (
                     <tr key={item.date}>
                         <td scope="row" className="">{item.name}</td>
-                        <td>{item.amount}</td>
+                        <td>{myAmount.format(item.amount)}</td>
                         <td className="color1-bg">{item.date}</td>
                     </tr>
                    )

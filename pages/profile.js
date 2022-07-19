@@ -59,9 +59,9 @@ export default function Home() {
         if(data.user.blocked === "yes"){
             router.push('/login')
         }else{
-            
+        let myCurrency = Intl.NumberFormat('en-US');
         setUserData(data.user);
-        setBalance(data.user.amount)
+        setBalance(myCurrency.format(data.user.amount))
         setFree(1)
         // console.log(localStorage.getItem('token'))
         }
@@ -159,7 +159,7 @@ export default function Home() {
                             </div>
                             <div className="mt-5">
                                 <p className="text-secondary"><i className="bi bi-coin mx-1"></i>Balance</p>
-                                <h4 className="text-success  fs ">${balance}</h4>
+                                <h5 className="text-success  fs ">${balance}</h5>
                             </div>
                         </div>
                     </div>
