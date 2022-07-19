@@ -329,7 +329,7 @@ export default function Home() {
                     <div className="modal-body">
                         <h2 className="text-center py-3">New Value</h2>
                         <form onSubmit={handleChange}>
-                            <input type="text" onChange={(e) => { setTarget(e.target.value)}} className='form-control mb-3 input-width mb-4'  />
+                            <input type="text" onChange={(e) => { setTarget(e.target.value)}} className='form-control mb-3 input-width mb-4' required />
                             <button type="submit" className="btn btn-primary px-3 myBtn" data-bs-dismiss="modal" data-bs-target="#exampleModal2" data-bs-toggle="modal">Verify</button>
                         </form>
                         <p className="text-muted py-3">Note! Whatever changes you make here will reflect at the Database.</p>

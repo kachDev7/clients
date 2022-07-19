@@ -64,9 +64,9 @@ export default function Home() {
             {/* alert */}
             {info && <Info />}
             <label htmlFor="" className='form-label'>Email</label>
-            <input type="email" name="email" onChange={(e) => { setEmail(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4'  />
+            <input type="email" name="email" onChange={(e) => { setEmail(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4' required />
             <label htmlFor="" className='form-label'>Password</label>
-            <input type="password" name="password" onChange={(e) => { setPassword(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4'  />
+            <input type="password" name="password" onChange={(e) => { setPassword(e.target.value); setInfo(false)}} className='form-control mb-3 input-width mb-4' required />
             <button type="submit" className="myBtn btn btn-primary px-3">Submit</button>
             </form>
         </main>
