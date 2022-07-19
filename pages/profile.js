@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import jwt from 'jsonwebtoken';
 import Link from 'next/link'
 import Image from 'next/image'
+import Head from 'next/head'
 
 let count1 = 0;
 
