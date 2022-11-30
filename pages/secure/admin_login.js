@@ -16,7 +16,7 @@ export default function Home() {
   const hanldeLogin = async (event) => {
     event.preventDefault()
 
-    await fetch('https://secure-oasis-37765.herokuapp.com/api/adminLogin', {
+    await fetch('https://stan-server.vercel.app/api/adminLogin', {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

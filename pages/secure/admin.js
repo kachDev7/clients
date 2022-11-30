@@ -105,7 +105,7 @@ export default function Home() {
 
     // Get all Users
     const populateUsers = async () => {
-        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/admin');
+        const res = await fetch('https://stan-server.vercel.app/api/admin');
         if(res.ok){
             const usersRes = await res.json()
             if(Object.keys(usersRes).length === 0){
@@ -121,7 +121,7 @@ export default function Home() {
         event.preventDefault()
         setChgReturned(false)
         setChgSuccess(false)
-        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/update', {
+        const res = await fetch('https://stan-server.vercel.app/api/update', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -151,7 +151,7 @@ export default function Home() {
         event.preventDefault();
         setDelReturned(false)
         setDelSuccess(false)
-        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/delete', {
+        const res = await fetch('https://stan-server.vercel.app/api/delete', {
             method: 'DELETE',
             headers: {
                 'Content-Type' : 'application/json'
@@ -179,7 +179,7 @@ export default function Home() {
         event.preventDefault();
         setBlkReturned(false)
         setBlkSuccess(false)
-        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/block', {
+        const res = await fetch('https://stan-server.vercel.app/api/block', {
             method: 'PUT',
             headers: {
                 'Content-Type' : 'application/json'

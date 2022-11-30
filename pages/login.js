@@ -21,7 +21,7 @@ export default function Home() {
 
     setLoading(true)
 
-    await fetch('https://secure-oasis-37765.herokuapp.com/api/login', {
+    await fetch('https://stan-server.vercel.app/api/login', {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

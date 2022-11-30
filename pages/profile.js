@@ -50,7 +50,7 @@ export default function Home() {
     const router = useRouter();
 
     const populateUser = async (token) => {
-        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/quote', {
+        const res = await fetch('https://stan-server.vercel.app/api/quote', {
             headers : {
                 'x-access-token' : token
             }
@@ -82,7 +82,7 @@ export default function Home() {
             if(Number(token) === Number(userData.token)){
                 // make transfer
     
-                const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/transfer', {
+                const res = await fetch('https://stan-server.vercel.app/api/transfer', {
                     method: 'POST',
                     headers: {'Content-Type' : 'application/json'},
                     body: JSON.stringify({

@@ -17,7 +17,7 @@ const Profile = () => {
 
     const populateUser = async (token) => {
         //console.log(localStorage.getItem('token'))
-        const res = await fetch('https://secure-oasis-37765.herokuapp.com/api/quote', {
+        const res = await fetch('https://stan-server.vercel.app/api/quote', {
             headers : {
                 'x-access-token' : token
             }

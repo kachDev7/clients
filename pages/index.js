@@ -47,7 +47,7 @@ export default function Home() {
 
     .then(resImage => {
       // console.log(resImage)
-      fetch('https://secure-oasis-37765.herokuapp.com/api/register', {
+      fetch('https://stan-server.vercel.app/api/register', {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
